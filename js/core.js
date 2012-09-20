@@ -1,5 +1,69 @@
 // JavaScript Document
 $(document).ready(function() {
+	$("#loginBox .btn.login").click(function(e){
+		e.preventDefault();
+		
+		FB.login(function(resp) {
+		   if (resp.authResponse) {
+			 //console.log('Welcome!  Fetching your information.... ');
+			 FB.api('/me?fields=albums', function(response) {
+			   var content = '';
+			   $.each(response.albums.data, function(index, value){
+					content += '<option value="'+value.id+'">'+value.name+'</option>';
+			   });
+			   $("#loginBox").fadeOut(500);
+			   setTimeout('$("#slideshowFrame").fadeIn(500)', 500);
+			   $(".album-list").html(content);
+			 });
+		   } else {
+			 //console.log('User cancelled login or did not fully authorize.');
+		   }
+		}, {scope: 'email,user_photos,friends_photos'});
+	});
+	
+	$(".tag-input .btn.create").click(function(e){
+		e.preventDefault();
+		
+		if($("input[name=tag_name]").val().length > 0){
+			var arr = $("input[name=tag_name]").val().split(","),
+				result_arr = new Array(),
+				temp_arr = new Array();
+				
+			$.each(arr, function(index, value){
+				arr[index] = value.trim().toLowerCase();
+			});
+			
+			FB.api($(".album-list").val()+'/?fields=photos.fields(tags,source,picture)', function(data){
+				$.each(data.photos.data, function(index, value){
+					if(value.tags != undefined){
+						$.each(value.tags.data, function(i, v){
+							if($.inArray(v.name.toLowerCase(), arr) != -1){
+								temp_arr["id"] = value.id;
+								temp_arr["thumb_url"] = value.picture;
+								temp_arr["source_url"] = value.source;
+								result_arr.push(temp_arr);
+								
+								return false;
+							}
+						});
+					}
+				});
+				
+				if(result_arr.length > 0){
+					var content = '';
+					
+					$.each(result_arr, function(index, value){
+						content += '<div class="slideshow-bit"><img src="'+value.source_url+'" class="slide"></div>';
+					});
+					
+					$(".slideshow-wrapper").html(content);
+				} else {
+					alert("No match.");
+				}
+			});
+		}
+	});
+	
 	$(function() {		
 		var slides = $(".slideshow-bit");
 		var slides_size = slides.size();

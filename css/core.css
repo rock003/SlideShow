@@ -10,6 +10,16 @@ body
 	margin: 0px;
 	heigth: 100%;
 }
+
+#loginBox {
+	text-align: center;
+	margin-top: 20px;
+}
+
+#loginBox .btn.login {
+	cursor: pointer;
+}
+
 .dashboard-wrapper
 {
 	width: 400px;
