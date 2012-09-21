@@ -30,18 +30,21 @@ $(document).ready(function() {
 		});
 		
 		var dashboard_show = true;
+		var dashboard_hide = true;
 		$(document).mousemove(function(event) {
 			if(dashboard_show)
 			{
-				//dashboard_show = false;
 				showPanel();
 			}
 		});
+		setInterval(hidePanel, 3000);
 		$(".dashboard-wrapper").mouseover(function() {
 			dashboard_show = false;
+			dashboard_hide = false;
 		});
 		$(".dashboard-wrapper").mouseout(function() {
 			dashboard_show = true;
+			dashboard_hide = true;
 		});
 		
 		function showPanel()
@@ -50,12 +53,18 @@ $(document).ready(function() {
 			if ($(".dashboard-wrapper").css("top") != '0px')
 			{
 				$(".dashboard-wrapper").stop().animate({top: '0px'}, 500, 
-				function() { dashboard_show = false; });
+				function() { dashboard_show = false; dashboard_hide = true; });
 			}
 		}
 		function hidePanel()
 		{
-			$(".dashboard-wrapper").stop().animate({top: '-140px'}, 500, function() { dashboard_show = true; });
+			if (dashboard_hide)
+			{
+				if ($(".dashboard-wrapper").css("top") == '0px')
+				{
+					$(".dashboard-wrapper").stop().animate({top: '-140px'}, 500, function() { dashboard_show = true; dhasboard_hide = false; });
+				}
+			}
 		}
 		
 		function slideInit()
