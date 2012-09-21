@@ -24,7 +24,9 @@
 
     // Additional initialization code here
 	FB.getLoginStatus(function(response) {
+		console.log("123");
 	  if (response.status === 'connected') {
+	  console.log("1234");
 		// the user is logged in and has authenticated your
 		// app, and response.authResponse supplies
 		// the user's ID, a valid access token, a signed
@@ -39,12 +41,12 @@
 		   $.each(response.albums.data, function(index, value){
 				content += '<option value="'+value.id+'">'+value.name+'</option>';
 		   });
-		   //$("#loginBox").fadeOut(500);
-		   //setTimeout('$("#slideshowFrame").fadeIn(500)', 500);
+		   
 		   $("#slideshowFrame").fadeIn(500);
 		   $(".album-list").html(content);
 		});
 	  } else {
+	  console.log("12345");
 		$("#loginBox").fadeIn(500);
 	  }
 	});

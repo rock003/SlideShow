@@ -25,8 +25,12 @@ $(document).ready(function() {
 		e.preventDefault();
 		result_arr = new Array(),
 		temp_arr = new Array();
+		if(animate_id != null){
+			clearInterval(animate_id);
+		}
+		$(".slideshow-wrapper").empty();
 				
-		if($("input[name=include_all]").val() == "true"){
+		if($("input[name=include_all]").is(':checked') && $("input[name=tag_name]").val().length <= 0){
 			FB.api($(".album-list").val()+'/?fields=photos.fields(tags,source,picture)', function(data){
 				$.each(data.photos.data, function(index, value){
 					temp_arr["id"] = value.id;
@@ -45,7 +49,7 @@ $(document).ready(function() {
 					content += '<div class="slideshow-bit"><img src="'+value.source_url+'" width="'+value.width+'" height="'+value.height+'" class="slide" ></div>';
 				});
 				
-				$(".slideshow-wrapper").empty().html(content);
+				$(".slideshow-wrapper").html(content);
 				$(".slideshow-wrapper").show();
 				slideInit();
 			});
@@ -86,7 +90,7 @@ $(document).ready(function() {
 						content += '<div class="slideshow-bit"><img src="'+value.source_url+'" width="'+value.width+'" height="'+value.height+'" class="slide"></div>';
 					});
 					
-					$(".slideshow-wrapper").empty().html(content);
+					$(".slideshow-wrapper").html(content);
 					$(".slideshow-wrapper").show();
 					slideInit();
 				} else {
