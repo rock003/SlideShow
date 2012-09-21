@@ -90,7 +90,7 @@
         </div>
     </div>
     
-    <div class="slideshow-wrapper"></div>
+    <div class="slideshow-wrapper" style="display: none;"></div>
 </div>
 </body>
 </html>
