@@ -23,6 +23,7 @@
                         <option>Album 4</option>
                     </select>
                 </div>
+                <div class="clear"></div>
                 <div class="tag-bit">
                     <label>Includes</label>
                     <div class="tag-input">
@@ -32,8 +33,12 @@
                         All <input type="checkbox" name="include_all" value="true" />
                     </div>
                 </div>
-                <div class="full-screen-bit">
-                    Full Screen >>
+                <div class="clear"></div>
+                <div class="screen-mode">
+                    <label>Screen Mode</label>
+                    <button class="toggle-screen-bit">
+                        Full Screen
+                    </button>
                 </div>
             </div>
         </div>

@@ -23,6 +23,7 @@ body
 	border-bottom-left-radius: 3px;
 	position: absolute;
 	z-index: 99;
+	top: -140px;
 }
 .dashboard-gap
 {
@@ -41,7 +42,7 @@ body
 {
 	padding: 20px;
 	border: 1px solid #848484;
-	border-top: 0px;	
+	border-top: 0px;
 	-webkit-border-bottom-right-radius: 3px;
 	-webkit-border-bottom-left-radius: 3px;
 	-moz-border-radius-bottomright: 3px;
@@ -73,4 +74,28 @@ body
 {
 	margin: auto;
 }
-	
+.clear
+{
+	clear: both;
+}
+.dashboard label
+{
+	float: left;
+	width: 90px;
+	display: block;
+}
+.album-bit,
+.tag-bit
+{
+	padding-bottom: 10px;
+	float: left;
+}
+.tag-input,
+.tag-all
+{
+	float: left;
+}
+.tag-input
+{
+	padding-right: 10px;
+}
