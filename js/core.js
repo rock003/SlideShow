@@ -31,7 +31,7 @@ $(document).ready(function() {
 		$(".slideshow-wrapper").empty();
 				
 		if($("input[name=include_all]").is(':checked') && $("input[name=tag_name]").val().length <= 0){
-			FB.api($(".album-list").val()+'/?fields=photos.fields(tags,source,picture)', function(data){
+			FB.api($(".album-list").val()+'/?fields=photos.fields(tags,source,picture,width,height)', function(data){
 				$.each(data.photos.data, function(index, value){
 					temp_arr["id"] = value.id;
 					temp_arr["thumb_url"] = value.picture;
@@ -46,7 +46,7 @@ $(document).ready(function() {
 				var content = '';
 				
 				$.each(result_arr, function(index, value){
-					content += '<div class="slideshow-bit"><img src="'+value.source_url+'" width="'+value.width+'" height="'+value.height+'" class="slide" ></div>';
+					content += '<div class="slideshow-bit"><img src="'+value.source_url+'" class="slide" ></div>';
 				});
 				
 				$(".slideshow-wrapper").html(content);
@@ -59,20 +59,21 @@ $(document).ready(function() {
 			$.each(arr, function(index, value){
 				arr[index] = value.trim().toLowerCase();
 			});
-			
-			FB.api($(".album-list").val()+'/?fields=photos.fields(tags,source,picture)', function(data){
+			//console.log(arr);
+			FB.api($(".album-list").val()+'/?fields=photos.fields(tags,source,picture,width,height)', function(data){
 				$.each(data.photos.data, function(index, value){
 					if(value.tags != undefined){
 						var width = value.width;
 						var height = value.height;
 						
 						$.each(value.tags.data, function(i, v){
+						//console.log(v.name);
 							if($.inArray(v.name.toLowerCase(), arr) != -1){
 								temp_arr["id"] = value.id;
 								temp_arr["thumb_url"] = value.picture;
 								temp_arr["source_url"] = value.source;
-								temp_arr["width"] = value.width;
-								temp_arr["height"] = value.height;
+								temp_arr["width"] = width;
+								temp_arr["height"] = height;
 								
 								result_arr.push(temp_arr);
 								temp_arr = [];
@@ -87,7 +88,7 @@ $(document).ready(function() {
 					var content = '';
 					
 					$.each(result_arr, function(index, value){
-						content += '<div class="slideshow-bit"><img src="'+value.source_url+'" width="'+value.width+'" height="'+value.height+'" class="slide"></div>';
+						content += '<div class="slideshow-bit"><img src="'+value.source_url+'" class="slide"></div>';
 					});
 					
 					$(".slideshow-wrapper").html(content);
