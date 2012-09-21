@@ -33,7 +33,7 @@
                     </div>
                 </div>
                 <div class="full-screen-bit">
-                    Full Screen
+                    Full Screen >>
                 </div>
             </div>
         </div>
