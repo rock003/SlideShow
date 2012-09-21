@@ -11,10 +11,7 @@ $(document).ready(function() {
 		var animate_id = null;
 		
 		slideInit();				
-		if (slides_size > 1)
-		{
-			setInterval(function () { animateSlide(slides, index); }, slide_time); 
-		}
+		
 		
 		$(".toggle-screen-bit").bind("click", function() {
 			$(document).toggleFullScreen();
@@ -78,6 +75,10 @@ $(document).ready(function() {
 				else 
 					$(this).css("height", "100%");
 			});
+			if (slides_size > 1)
+			{
+				setInterval(function () { animateSlide(slides, index); }, slide_time); 
+			}
 		}
 		
 		function animateSlide(slides, idx)
