@@ -32,6 +32,9 @@ $(document).ready(function() {
 					temp_arr["id"] = value.id;
 					temp_arr["thumb_url"] = value.picture;
 					temp_arr["source_url"] = value.source;
+					temp_arr["width"] = value.width;
+					temp_arr["height"] = value.height;
+					
 					result_arr.push(temp_arr);
 					temp_arr = [];
 				});
@@ -39,7 +42,7 @@ $(document).ready(function() {
 				var content = '';
 				
 				$.each(result_arr, function(index, value){
-					content += '<div class="slideshow-bit"><img src="'+value.source_url+'" class="slide"></div>';
+					content += '<div class="slideshow-bit"><img src="'+value.source_url+'" width="'+value.width+'" height="'+value.height+'" class="slide" ></div>';
 				});
 				
 				$(".slideshow-wrapper").empty().html(content);
@@ -56,12 +59,19 @@ $(document).ready(function() {
 			FB.api($(".album-list").val()+'/?fields=photos.fields(tags,source,picture)', function(data){
 				$.each(data.photos.data, function(index, value){
 					if(value.tags != undefined){
+						var width = value.width;
+						var height = value.height;
+						
 						$.each(value.tags.data, function(i, v){
 							if($.inArray(v.name.toLowerCase(), arr) != -1){
 								temp_arr["id"] = value.id;
 								temp_arr["thumb_url"] = value.picture;
 								temp_arr["source_url"] = value.source;
+								temp_arr["width"] = value.width;
+								temp_arr["height"] = value.height;
+								
 								result_arr.push(temp_arr);
+								temp_arr = [];
 								
 								return false;
 							}
@@ -73,7 +83,7 @@ $(document).ready(function() {
 					var content = '';
 					
 					$.each(result_arr, function(index, value){
-						content += '<div class="slideshow-bit"><img src="'+value.source_url+'" class="slide"></div>';
+						content += '<div class="slideshow-bit"><img src="'+value.source_url+'" width="'+value.width+'" height="'+value.height+'" class="slide"></div>';
 					});
 					
 					$(".slideshow-wrapper").empty().html(content);

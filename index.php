@@ -39,10 +39,13 @@
 		   $.each(response.albums.data, function(index, value){
 				content += '<option value="'+value.id+'">'+value.name+'</option>';
 		   });
-		   $("#loginBox").fadeOut(500);
-		   setTimeout('$("#slideshowFrame").fadeIn(500)', 500);
+		   //$("#loginBox").fadeOut(500);
+		   //setTimeout('$("#slideshowFrame").fadeIn(500)', 500);
+		   $("#slideshowFrame").fadeIn(500);
 		   $(".album-list").html(content);
 		});
+	  } else {
+		$("#loginBox").fadeIn(500);
 	  }
 	});
   };
@@ -57,7 +60,7 @@
    }(document));
 </script>
 
-<div id="loginBox">
+<div id="loginBox" style="display: none;">
 	<button class="btn login">Login with Facebook</button>
 </div>
 <div id="slideshowFrame" style="display: none;">
