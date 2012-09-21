@@ -154,7 +154,7 @@ $(document).ready(function() {
 			{
 				if ($(".dashboard-wrapper").css("top") == '0px')
 				{
-					$(".dashboard-wrapper").stop().animate({top: '-140px'}, 500, function() { dashboard_show = true; dhasboard_hide = false; });
+					$(".dashboard-wrapper").stop().animate({top: '-170px'}, 500, function() { dashboard_show = true; dhasboard_hide = false; });
 				}
 			}
 		}
