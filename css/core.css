@@ -99,3 +99,7 @@ body
 {
 	padding-right: 10px;
 }
+select.album-list
+{
+	width: 250px;
+}
